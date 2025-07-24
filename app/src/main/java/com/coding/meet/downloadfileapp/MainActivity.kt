@@ -1,0 +1,202 @@
+package com.coding.meet.downloadfileapp
+
+import android.app.DownloadManager
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
+import com.google.android.material.snackbar.Snackbar
+import java.io.File
+
+
+class MainActivity : AppCompatActivity() {
+    private val multiplePermissionId = 14
+    private val multiplePermissionNameList = if (Build.VERSION.SDK_INT >= 33) {
+        arrayListOf()
+    } else {
+        arrayListOf(
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        )
+    }
+    private lateinit var snackbar: Snackbar
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val rootView = findViewById<View>(R.id.rootView)
+        snackbar = Snackbar.make(
+            rootView,
+            "No Internet Connection",
+            Snackbar.LENGTH_INDEFINITE
+        ).setAction("Setting") {
+            startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+        }
+
+
+    }
+
+
+
+
+    fun downloadtermux(@Suppress("UNUSED_PARAMETER")view: View) {
+
+                download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/termux-app_v0.119.0-beta.3+apt-android-5-github-debug_arm64-v8a.apk")
+
+    }
+
+     fun downloadmain(@Suppress("UNUSED_PARAMETER")view: View) {
+
+            download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/archive/main.tar.gz")
+        
+    }
+
+    fun downloadnote(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://raw.githubusercontent.com/definitly486/Lenovo_Tab_3_7_TB3-730X/refs/heads/main/note")
+
+    }
+
+
+    fun installtermux(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(
+            Uri.fromFile(File(Environment.getExternalStorageDirectory().toString() + "/Download/termux-app_v0.119.0-beta.3+apt-android-5-github-debug_arm64-v8a.apk")),
+            "application/vnd.android.package-archive"
+        )
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // without this flag android returned a intent error!
+        startActivity(intent)
+
+    }
+
+
+
+
+    private fun download(url: String) {
+        val folder = File(
+            Environment.getExternalStorageDirectory().toString() + "/Download/"
+
+        )
+        if (!folder.exists()) {
+            folder.mkdirs()
+        }
+
+        val lastname = url.split("/").last()
+
+        val file = File(
+            Environment.getExternalStorageDirectory().toString() + "/Download/"+lastname
+
+        )
+        if (file.exists()) {
+            Toast.makeText(this, "file  exist", Toast.LENGTH_SHORT).show()
+          return
+        }
+
+
+        Toast.makeText(this, "Download Started", Toast.LENGTH_SHORT).show()
+        val fileName = url.split("/").last()
+        val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+        val request = DownloadManager.Request(url.toUri())
+        request.setAllowedNetworkTypes(
+            DownloadManager.Request.NETWORK_WIFI or
+                    DownloadManager.Request.NETWORK_MOBILE
+        )
+        request.setTitle(fileName)
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setDestinationInExternalPublicDir(
+            Environment.DIRECTORY_DOWNLOADS,
+            fileName
+        )
+        downloadManager.enqueue(request)
+
+    }
+
+
+
+
+
+    private fun checkMultiplePermission(): Boolean {
+        val listPermissionNeeded = arrayListOf<String>()
+        for (permission in multiplePermissionNameList) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    permission
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                listPermissionNeeded.add(permission)
+            }
+        }
+        if (listPermissionNeeded.isNotEmpty()) {
+            ActivityCompat.requestPermissions(
+                this,
+                listPermissionNeeded.toTypedArray(),
+                multiplePermissionId
+            )
+            return false
+        }
+        return true
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == multiplePermissionId) {
+            if (grantResults.isNotEmpty()) {
+                var isGrant = true
+                for (element in grantResults) {
+                    if (element == PackageManager.PERMISSION_DENIED) {
+                        isGrant = false
+                    }
+                }
+                if (isGrant) {
+                    // here all permission granted successfully
+
+                } else {
+                    var someDenied = false
+                    for (permission in permissions) {
+                        if (!ActivityCompat.shouldShowRequestPermissionRationale(
+                                this,
+                                permission
+                            )
+                        ) {
+                            if (ActivityCompat.checkSelfPermission(
+                                    this,
+                                    permission
+                                ) == PackageManager.PERMISSION_DENIED
+                            ) {
+                                someDenied = true
+                            }
+                        }
+                    }
+                    if (someDenied) {
+                        // here app Setting open because all permission is not granted
+                        // and permanent denied
+                        appSettingOpen(this)
+                    } else {
+                        // here warning permission show
+                        warningPermissionDialog(this) { _: DialogInterface, which: Int ->
+                            when (which) {
+                                DialogInterface.BUTTON_POSITIVE ->
+                                    checkMultiplePermission()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
