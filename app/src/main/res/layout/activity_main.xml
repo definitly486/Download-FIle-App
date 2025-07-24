@@ -41,4 +41,11 @@
         android:onClick="installtermux"
         tools:ignore="UsingOnClickInXml" />
 
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install Total Commander"
+        android:onClick="installtc"/>
+
 </LinearLayout>

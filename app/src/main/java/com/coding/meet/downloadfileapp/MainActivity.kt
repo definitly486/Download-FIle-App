@@ -69,17 +69,31 @@ class MainActivity : AppCompatActivity() {
 
     fun installtermux(@Suppress("UNUSED_PARAMETER")view: View) {
 
+        install("termux-app_v0.119.0-beta.3+apt-android-5-github-debug_arm64-v8a.apk")
+
+    }
+
+
+    fun installtc(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/Total_Commander_v.3.60b4d.apk")
+        install("Total_Commander_v.3.60b4d.apk")
+    }
+
+
+
+
+    private fun install(url: String) {
+
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setDataAndType(
-            Uri.fromFile(File(Environment.getExternalStorageDirectory().toString() + "/Download/termux-app_v0.119.0-beta.3+apt-android-5-github-debug_arm64-v8a.apk")),
+            Uri.fromFile(File(Environment.getExternalStorageDirectory().toString() + "/Download/"+url)),
             "application/vnd.android.package-archive"
         )
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // without this flag android returned a intent error!
         startActivity(intent)
 
     }
-
-
 
 
     private fun download(url: String) {
