@@ -1,8 +1,12 @@
 package com.coding.meet.downloadfileapp
 
+import android.annotation.SuppressLint
 import android.app.DownloadManager
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -19,7 +23,10 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.File
 
 
-class MainActivity : AppCompatActivity() {
+class  MainActivity : AppCompatActivity() {
+
+    var mydownloaid : Long = 0
+
     private val multiplePermissionId = 14
     private val multiplePermissionNameList = if (Build.VERSION.SDK_INT >= 33) {
         arrayListOf()
@@ -86,22 +93,60 @@ class MainActivity : AppCompatActivity() {
         install("v2rayNG.apk")
     }
 
+    fun installfirefox(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/Firefox+139.0.4.apk")
+        install("Firefox+139.0.4.apk")
+    }
 
 
+
+    fun installchrome(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/Google+Chrome+106.0.5249.126+Android6.arm.apk")
+        install("Google+Chrome+106.0.5249.126+Android6.arm.apk")
+    }
+
+
+
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private fun install(url: String) {
 
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.setDataAndType(
-            Uri.fromFile(File(Environment.getExternalStorageDirectory().toString() + "/Download/"+url)),
-            "application/vnd.android.package-archive"
-        )
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // without this flag android returned a intent error!
-        startActivity(intent)
+         @Suppress("NAME_SHADOWING") val receiver =
+            object : BroadcastReceiver() {
+                override fun onReceive(context: Context, intent: Intent) {
+                    val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+                    if (id == mydownloaid) {
+                        Toast.makeText(context, "Download complete!\n Image "
+                                + " saved to ",
+                            Toast.LENGTH_LONG).show()
+
+
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.setDataAndType(
+                            Uri.fromFile(File(Environment.getExternalStorageDirectory().toString() + "/Download/"+url)),
+                            "application/vnd.android.package-archive"
+                        )
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // without this flag android returned a intent error!
+                        startActivity(intent)
+
+
+
+                    }
+                }
+            }
+
+
+
+        registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
     }
 
 
-    private fun download(url: String) {
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    fun download(url: String) {
+
+
         val folder = File(
             Environment.getExternalStorageDirectory().toString() + "/Download/"
 
@@ -110,7 +155,7 @@ class MainActivity : AppCompatActivity() {
             folder.mkdirs()
         }
 
-        val lastname = url.split("/").last()
+         val lastname = url.split("/").last()
 
         val file = File(
             Environment.getExternalStorageDirectory().toString() + "/Download/"+lastname
@@ -118,7 +163,7 @@ class MainActivity : AppCompatActivity() {
         )
         if (file.exists()) {
             Toast.makeText(this, "file  exist", Toast.LENGTH_SHORT).show()
-          return
+            return
         }
 
 
@@ -136,11 +181,9 @@ class MainActivity : AppCompatActivity() {
             Environment.DIRECTORY_DOWNLOADS,
             fileName
         )
-        downloadManager.enqueue(request)
+       mydownloaid = downloadManager.enqueue(request)
 
     }
-
-
 
 
 

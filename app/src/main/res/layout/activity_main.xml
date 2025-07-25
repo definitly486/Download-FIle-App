@@ -55,4 +55,18 @@
         android:text="Install v2rayNG"
         android:onClick="installv2rayng"/>
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install Chrome"
+        android:onClick="installchrome"/>
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install Firefox"
+        android:onClick="installfirefox"/>
+
 </LinearLayout>
