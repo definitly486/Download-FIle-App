@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="@string/download_main_tar_gz"
         android:onClick="downloadmain"
-        tools:ignore="UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
     <Button
         android:id="@+id/button2"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/download_termux"
         android:onClick="downloadtermux"
-        tools:ignore="UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
     <Button
         android:id="@+id/button3"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:text="@string/download_note"
         android:onClick="downloadnote"
-        tools:ignore="UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
     <Button
         android:id="@+id/button4"
@@ -39,34 +39,46 @@
         android:layout_height="wrap_content"
         android:text="@string/install_termux"
         android:onClick="installtermux"
-        tools:ignore="UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Install Total Commander"
-        android:onClick="installtc"/>
+        android:text="@string/install_total_commander"
+        android:onClick="installtc"
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Install v2rayNG"
-        android:onClick="installv2rayng"/>
+        android:text="@string/install_v2rayng"
+        android:onClick="installv2rayng"
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Install Chrome"
-        android:onClick="installchrome"/>
+        android:text="@string/install_chrome"
+        android:onClick="installchrome"
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Install Firefox"
-        android:onClick="installfirefox"/>
+        android:text="@string/install_firefox"
+        android:onClick="installfirefox"
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/install_gnucash"
+        android:onClick="installgnucash"
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
 </LinearLayout>

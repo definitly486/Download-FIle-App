@@ -57,14 +57,14 @@ class  MainActivity : AppCompatActivity() {
 
     fun downloadtermux(@Suppress("UNUSED_PARAMETER")view: View) {
 
-                download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/termux-app_v0.119.0-beta.3+apt-android-5-github-debug_arm64-v8a.apk")
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/termux-app_v0.119.0-beta.3+apt-android-5-github-debug_arm64-v8a.apk")
 
     }
 
-     fun downloadmain(@Suppress("UNUSED_PARAMETER")view: View) {
+    fun downloadmain(@Suppress("UNUSED_PARAMETER")view: View) {
 
-            download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/archive/main.tar.gz")
-        
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/archive/main.tar.gz")
+
     }
 
     fun downloadnote(@Suppress("UNUSED_PARAMETER")view: View) {
@@ -107,20 +107,14 @@ class  MainActivity : AppCompatActivity() {
         install("Google+Chrome+106.0.5249.126+Android6.arm.apk")
     }
 
+    fun installgnucash(@Suppress("UNUSED_PARAMETER")view: View) {
 
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/GnucashAndroid_v2.4.0.apk")
+        install("GnucashAndroid_v2.4.0.apk")
+    }
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private fun install(url: String) {
-
-         @Suppress("NAME_SHADOWING") val receiver =
-            object : BroadcastReceiver() {
-                override fun onReceive(context: Context, intent: Intent) {
-                    val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-                    if (id == mydownloaid) {
-                        Toast.makeText(context, "Download complete!\n Image "
-                                + " saved to ",
-                            Toast.LENGTH_LONG).show()
-
 
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.setDataAndType(
@@ -130,15 +124,6 @@ class  MainActivity : AppCompatActivity() {
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // without this flag android returned a intent error!
                         startActivity(intent)
 
-
-
-                    }
-                }
-            }
-
-
-
-        registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
     }
 
@@ -155,7 +140,7 @@ class  MainActivity : AppCompatActivity() {
             folder.mkdirs()
         }
 
-         val lastname = url.split("/").last()
+        val lastname = url.split("/").last()
 
         val file = File(
             Environment.getExternalStorageDirectory().toString() + "/Download/"+lastname
@@ -181,7 +166,7 @@ class  MainActivity : AppCompatActivity() {
             Environment.DIRECTORY_DOWNLOADS,
             fileName
         )
-       mydownloaid = downloadManager.enqueue(request)
+        mydownloaid = downloadManager.enqueue(request)
 
     }
 
