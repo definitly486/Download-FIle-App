@@ -81,4 +81,18 @@
         android:onClick="installgnucash"
         tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/install_mpv"
+        android:onClick="installmpv"/>
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/install_aimp"
+        android:onClick="installaimp"/>
+
 </LinearLayout>

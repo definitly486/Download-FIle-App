@@ -113,6 +113,18 @@ class  MainActivity : AppCompatActivity() {
         install("GnucashAndroid_v2.4.0.apk")
     }
 
+    fun installmpv(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/is.xyz.mpv_41.apk")
+        install("is.xyz.mpv_41.apk")
+    }
+
+    fun installaimp(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/AIMP_vv3.30.1250.apk")
+        install("AIMP_vv3.30.1250.apk")
+    }
+
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private fun install(url: String) {
 

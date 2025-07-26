@@ -9,4 +9,6 @@
     <string name="install_chrome">Install Chrome</string>
     <string name="install_firefox">Install Firefox</string>
     <string name="install_gnucash">Install Gnucash</string>
+    <string name="install_mpv">Install MPV</string>
+    <string name="install_aimp">Install aimp</string>
 </resources>
