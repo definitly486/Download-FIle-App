@@ -53,8 +53,8 @@
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/install_v2rayng"
-        android:onClick="installv2rayng"
+        android:text="@string/installnekobox"
+        android:onClick="installnekobox"
         tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
     <Button
@@ -94,5 +94,40 @@
         android:layout_height="wrap_content"
         android:text="@string/install_aimp"
         android:onClick="installaimp"/>
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install Pluma"
+        android:onClick="installpluma"/>
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install ByeDPI"
+        android:onClick="installbyedpi"/>
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install LibreTorrent"
+        android:onClick="installlibretorrent"/>
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install Gesture"
+        android:onClick="installgesture"/>
+
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install  Hibernator"
+        android:onClick="installhibernator"/>
 
 </LinearLayout>

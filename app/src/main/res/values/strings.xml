@@ -5,7 +5,7 @@
     <string name="download_note">Download note</string>
     <string name="install_termux">Install Termux</string>
     <string name="install_total_commander">Install Total Commander</string>
-    <string name="install_v2rayng">Install v2rayNG</string>
+    <string name="installnekobox">Install NekoBox</string>
     <string name="install_chrome">Install Chrome</string>
     <string name="install_firefox">Install Firefox</string>
     <string name="install_gnucash">Install Gnucash</string>

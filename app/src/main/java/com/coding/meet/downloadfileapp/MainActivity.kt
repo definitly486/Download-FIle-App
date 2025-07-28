@@ -87,10 +87,10 @@ class  MainActivity : AppCompatActivity() {
         install("Total_Commander_v.3.60b4d.apk")
     }
 
-    fun installv2rayng(@Suppress("UNUSED_PARAMETER")view: View) {
+    fun installnekobox(@Suppress("UNUSED_PARAMETER")view: View) {
 
-        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/v2rayNG.apk")
-        install("v2rayNG.apk")
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/NekoBox-1.3.8-arm64-v8a.apk")
+        install("NekoBox-1.3.8-arm64-v8a.apk")
     }
 
     fun installfirefox(@Suppress("UNUSED_PARAMETER")view: View) {
@@ -124,6 +124,38 @@ class  MainActivity : AppCompatActivity() {
         download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/AIMP_vv3.30.1250.apk")
         install("AIMP_vv3.30.1250.apk")
     }
+
+    fun installpluma(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/Pluma_.private_fast.browser_1.80_APKPure.apk")
+        install("Pluma_.private_fast.browser_1.80_APKPure.apk")
+    }
+
+    fun installbyedpi(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/byedpi-1.2.0.apk")
+        install("byedpi-1.2.0.apk")
+    }
+
+    fun installlibretorrent(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/LibreTorrent-3.2-armeabi-v7a.apk")
+        install("LibreTorrent-3.2-armeabi-v7a.apk")
+    }
+
+    fun installgesture(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/Gesture.apk")
+        install("Gesture.apk")
+    }
+    fun installhibernator(@Suppress("UNUSED_PARAMETER")view: View) {
+
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/Hibernator.apk")
+        install("Hibernator.apk")
+    }
+
+
+
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private fun install(url: String) {
