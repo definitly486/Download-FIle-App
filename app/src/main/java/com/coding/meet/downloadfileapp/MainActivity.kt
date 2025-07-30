@@ -154,7 +154,11 @@ class  MainActivity : AppCompatActivity() {
         install("Hibernator.apk")
     }
 
+    fun installv2rayng(@Suppress("UNUSED_PARAMETER")view: View) {
 
+        download("https://github.com/definitly486/Lenovo_Tab_3_7_TB3-730X/releases/download/apk/v2rayNG.apk")
+        install("v2rayNG.apk")
+    }
 
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")

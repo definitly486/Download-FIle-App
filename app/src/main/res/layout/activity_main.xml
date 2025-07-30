@@ -130,4 +130,11 @@
         android:text="Install  Hibernator"
         android:onClick="installhibernator"/>
 
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Install V2rayNG"
+        android:onClick="installv2rayng"/>
+
 </LinearLayout>
